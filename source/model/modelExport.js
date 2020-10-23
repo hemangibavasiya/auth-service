@@ -1,3 +1,4 @@
 module.exports = {
-    users: require('./user')
+    users: require('./user'),
+    userAuthentication: require('./user_authentication')
 }

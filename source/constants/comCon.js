@@ -10,5 +10,6 @@ module.exports = {
     FIELD_MESSAGE: 'message',
     FIELD_USER_CODE: 'user_code',
     FIELD_TOKEN: 'token',
-    MSG_NO_CONTENT: 'No content Found'
+    MSG_NO_CONTENT: 'No content Found',
+    MSG_INVALID_TOKEN: 'Invalid token'
 }

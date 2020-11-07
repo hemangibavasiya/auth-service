@@ -9,7 +9,7 @@ _ = require('lodash')
 const fetchData = (userCode) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const response = await getData({ id: userCode }, {_id:false}, dbCon.COLLECTION_USERS)
+            const response = await getData({ user_code: userCode }, {_id:false}, dbCon.COLLECTION_PRODUCT)
             if(_.size(response) === 0) return reject(errorGanerator(status.NO_CONTENT, comCon.MSG_NO_CONTENT))
             return resolve(response)
 

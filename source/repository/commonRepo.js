@@ -9,6 +9,16 @@ const getData = async (query, projection, collectionName) => {
     }
 }
 
+const updateData = async (query, data, collectionName) => {
+    try {
+      const model = global.db.connection.model(collectionName)
+      const response = await model.updateMany(query, getUpdateJsonFormat(data), getUpdatedJsonInResponse(true)).exec()
+      return response
+    } catch (error) {
+      throw error
+    }
+}
+
 const insertData = async (data, collectionName) =>{
     try {
         const model = global.db.connection.model(collectionName)
@@ -30,8 +40,22 @@ const saveData = async (data, collectionName) => {
     }
 }
 
+const getUpdateJsonFormat = (updateJson) => {
+    let json = {}
+    json['$set'] = updateJson
+    return json
+  }
+  
+  const getUpdatedJsonInResponse = (value) => {
+    let json = {}
+    json['new'] = value
+    return json
+  }
+  
+
 module.exports = {
     getData,
     insertData,
-    saveData
+    saveData,
+    updateData
 }

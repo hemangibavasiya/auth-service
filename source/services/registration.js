@@ -6,6 +6,7 @@ const { getData, saveData} = require('../repository/commonRepo')
 const status  = require('http-status')
 const dbCon = require('../constants/dbCon')
 const _ = require('lodash')
+const {Mail} = require('./mailService')
 
 const registration = (body) => {
     return new Promise(async (resolve, reject) => {
@@ -27,6 +28,14 @@ const registration = (body) => {
             user[dbCon.FIELD_EMAIL] = body.email
             user[dbCon.FIELD_PASSWORD] = hashedPassword
             const savedUser = await saveData(user, dbCon.COLLECTION_USERS)
+
+            const mailOptions = {}
+            mailOptions[comCon.FIELD_FROM] = '#############@gmail.com'
+            mailOptions[comCon.FIELD_TO] = body.email
+            mailOptions[comCon.FIELD_SUBJECT] = 'Welcome Mail'
+            mailOptions[comCon.FIELD_TEXT] = 'Hello ' + body.name + '\n Thanks for the connecting with us\n we try to provide our best service with you\n Thanks & Regards \n ABC company'
+
+            const mailRes = await Mail(mailOptions)
             return resolve(savedUser)
         } catch (err) {
             return reject(err)

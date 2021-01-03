@@ -1,5 +1,6 @@
 module.exports = {
     MSG_EMAIL_ALREADY_EXISTS: 'Email already exists',
+    MSG_EMAIL_NOT_EXIST: 'Email not found',
     MSG_INVALID_USER: 'Invalid user',
     MSG_INVALID_PASSWORD: 'Invalid password',
     STATUS_400: 400,

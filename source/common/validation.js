@@ -29,8 +29,26 @@ const productBodyValidation = (data) => {
     return schema.validate(data)
 }
 
+const forgotValidation = (data) => {
+    const schema = Joi.object({
+        email: Joi.string().min(6).required().email()
+    })
+    return schema.validate(data)
+}
+
+const resetValidation = (data) => {
+    const schema = Joi.object({
+        password: Joi.string().min(6).required(),
+        email: Joi.string().min(6).required().email()
+
+    })
+    return schema.validate(data)
+}
+
 module.exports = {
     registerValidation,
     loginValidation,
-    productBodyValidation
+    productBodyValidation,
+    forgotValidation,
+    resetValidation
 }
